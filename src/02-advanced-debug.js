@@ -25,4 +25,4 @@ function goodPractices() {
 }
 
 // then, call the function so it runs!
-goodPractices()
+// goodPractices()
