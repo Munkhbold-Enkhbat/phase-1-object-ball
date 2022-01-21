@@ -140,4 +140,41 @@ function winningTeam () {
     return winner
 }
 
-console.log(winningTeam())
+function playerWithLongestName () {
+    let game = gameObject()
+    let longestName = ''
+
+    for(let team in game) {
+        let players = game[team]['players']
+        for(let player in players) {
+            if(player.length > longestName.length) {
+                longestName = player
+            }
+        }
+    }
+    return longestName
+}
+
+/**************** SUPER BONUS *****************/
+
+function doesLongNameStealATon () {
+
+    const longestNamePlayer = playerWithLongestName()
+    let game = gameObject()
+    let longestNamePlayerSteals = 0
+    let mostSteals = 0
+
+    for(let team in game) {
+        let players = game[team]['players']
+        for(let player in players) {
+            debugger
+            if(player === longestNamePlayer) {
+                longestNamePlayerSteals = players[player]['steals'] 
+            } else if(players[player]['steals'] > mostSteals) {
+                mostSteals = players[player]['steals']
+            }
+
+        }
+    }
+    return longestNamePlayerSteals > mostSteals
+}
