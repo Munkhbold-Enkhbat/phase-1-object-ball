@@ -1,43 +1,16 @@
-// console.log('Simple debugging example running.')
+const homeTeam = () => gameObject().home
+const awayTeam = () => gameObject().away
 
-// let x = 99
-// console.log(x)
+const players = () => Object.assign({}, homeTeam().players, awayTeam().players)
 
-function numPointsScored(name) {
-    let game = gameObject()
+const numPointsScored = playerName => players()[playerName].points
 
-    for (let team in game) {
-        let players = game[team].players
-        for (let player in players) {
-            if (player === name) {
-                return players[player].points
-            }
-        }
-    }
-}
-
-function shoeSize(name) {
-    let game = gameObject()
-
-    for (let team in game) {
-        let players = game[team].players
-        for (let player in players) {
-            if (player === name) {
-                return players[player].shoe
-            }
-        }
-    }
-}
+const shoeSize = playerName => players()[playerName].shoe
 
 function teamColors(tName) {
-    let game = gameObject()
-
-    for (let team in game) {
-        let gTeam = game[team]
-        if (gTeam.teamName === tName) {
-            return gTeam.colors
-        }
-    }
+    const teams = [homeTeam(), awayTeam()]
+    const rightTeam = teams.find(team => team.teamName === tName)
+    return rightTeam.colors
 }
 
 function teamNames() {
