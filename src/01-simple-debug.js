@@ -13,40 +13,19 @@ function teamColors(tName) {
     return rightTeam.colors
 }
 
-function teamNames() {
-    let game = gameObject()
-    let arrTeams = []
-    for (let team in game) {
-        arrTeams.push(game[team].teamName)
-    }
-    return arrTeams
-}
+const teamNames = () => [homeTeam().teamName, awayTeam().teamName]
 
 function playerNumbers(tName) {
-    let game = gameObject()
-    let pNums = [];
-    for (let team in game) {
-        if (game[team].teamName === tName) {
-            let players = game[team].players
-            for (let player in players) {
-                pNums.push(players[player].number)
-            }
-        }
+    let playersNums = []
+    if(homeTeam().teamName === tName) {
+        Object.entries(homeTeam().players).map(player => playersNums.push(player[1].number))
+    } else {
+        Object.entries(awayTeam().players).map(player => playersNums.push(player[1].number))
     }
-    return pNums
+    return playersNums
 }
 
-function playerStats(playerName) {
-    let game = gameObject()
-    for (let team in game) {
-        let players = game[team].players
-        for (let player in players) {
-            if (player === playerName) {
-                return players[player]
-            }
-        }
-    }
-}
+const playerStats = playerName => players()[playerName]
 
 function bigShoeRebounds() {
     let game = gameObject()
